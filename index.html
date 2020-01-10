@@ -23,7 +23,7 @@
         <a href="#" class="active"><img src="./assets/logo.png" alt="MagicFlix" /></a>
         <nav id="navLinks">
           <ul>
-            <li><a href="#">Magic videos</a></li>
+            <li><a href="#">Magic videos<i class="fas fa-angle-down"></i></a></li>
             <li><a href="#">Magicians</a></li>
             <li><a href="#">My Account</a></li>
             <li><a href="#">About</a></li>
@@ -181,11 +181,11 @@
         </div>
         <input class="review_input text_leave-review" text="text" placeholder="Leave your review" id="reviews"/>
         <div class="aling_button_and_star text_size_xl">
-        <i class="far fa-star"></i>
-        <i class="far fa-star"></i>
-        <i class="far fa-star"></i>
-        <i class="far fa-star"></i>
-        <i class="far fa-star"></i>
+        <div class="far fa-star star_item active" data-rate="1"></div>
+        <div class="far fa-star star_item" data-rate="2" ></div>
+        <div class="far fa-star star_item" data-rate="3" ></div>
+        <div class="far fa-star star_item" data-rate="4" ></div>
+        <div class="far fa-star star_item" data-rate="5" ></div>
         <input class="button text_size_xl"type="button" value="Send" id="send"/>
         </div>
         </div>
@@ -223,18 +223,91 @@
       }
     }
 
+    let rating = document.querySelector('.aling_button_and_star'),
+        ratingItem = document.querySelectorAll('.star_item');
+
+    rating.onclick = function(e){
+      let target = e.target;
+      if(target.classList.contains('star-item')){
+        removeClass(ratingItem, 'current-active')
+        target.classList.add('color_blue', 'current-color_blue');
+      }
+    }
+
+    rating.onmouseover = function(e){
+      let target = e.target;
+      if(target.classList.contains('star_item')){
+        removeClass(ratingItem, 'active')
+        target.classList.add('active');
+        mouseOverActiveClass(ratingItem);
+      }
+    }
+    // rating.onmouseout = function(){
+    //   addClass(ratingItem, 'active');
+    //   mouseOutActiveClas(ratingItem);
+    // }
+
+    function removeClass(arr) {
+      for(let i = 0, iLen = arr.length; i <iLen; i ++) {
+        for(let j = 1; j < arguments.length; j ++) {
+          ratingItem[i].classList.remove(arguments[j]);
+        }
+      }
+    }
+    function addClass(arr) {
+      for(let i = 0, iLen = arr.length; i <iLen; i ++) {
+        for(let j =1; j < arguments.length; j ++) {
+          ratingItem[i].classList.add(arguments[j]);
+        }
+      }
+    } 
+
+    mouseOverActiveClass = function(arr){
+      for(let i = 0, iLen = arr.length; i < iLen; i++) {
+        if(arr[i].classList.contains('active')){
+          break;
+        } else {
+          arr[i].classList.add('active');
+        }
+      }
+    }
+
+    mouseOutActiveClas = function(arr){
+      for(let i = arr.length-1; i >=1; i--) {
+        if(arr[i].classList.contains('current-active')){
+          break;
+        } else {
+          arr[i].classList.remove('active');
+        }
+      }
+    }
+
+//// Получаю данные от 1 до 5
+
+    rating.onclick = function(event) {
+      let num = event.target.dataset.rate;
+      
+      console.log(num);
+    }
+
+/////
+
     send.onclick = function(event) {
       let text = document.getElementById('reviews').value;
       let list = document.getElementById('reviews');
       let item = document.createElement('div');
       let user_name = 'User User'
       item.classList.add('container_review');
-
-      item.innerHTML = '<div class="reviews_icon_user"><i class="fas fa-user-alt"></i></div><div class="review_content"><p class="review_name"><span class="text_size_xl">'+user_name+'</span><b><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></b></p><p class="review_content-text text_size_m text_color_light_grey">'+text+'</p></div><hr />'
+      if (text !== "") {
+      item.innerHTML = '<div class="reviews_icon_user"><i class="fas fa-user-alt"></i></div><div class="review_content"><p class="review_name"><span class="text_size_xl">'
+        +user_name+'</span><b><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></b></p><p class="review_content-text text_size_m text_color_light_grey">'
+          +text+'</p></div><hr />'
 
       list.before(item);
 
-      
+        } else {
+        return null;
+      } 
     }
   </script>
   </body>
