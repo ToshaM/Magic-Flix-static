@@ -337,24 +337,44 @@
     }
 
 /////
-
+rating.onclick = function(event) {
+      let num = event.target.dataset.rate;
+      if (num === undefined) {
+        num = 1;
+      }
+    
     send.onclick = function(event) {
+      
       let text = document.getElementById('reviews').value;
       let list = document.getElementById('reviews');
       let item = document.createElement('div');
       let user_name = 'User User'
       item.classList.add('container_review');
       if (text !== "") {
+        if (num == 1) {
+          num = '<b><i class="fas fa-star"></i><i class="fas fa-star color_grey"></i><i class="fas fa-star color_grey"></i><i class="fas fa-star color_grey"></i><i class="fas fa-star color_grey"></i></b>'
+        } if (num == 2) {
+          num = '<b><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star color_grey"></i><i class="fas fa-star color_grey"></i><i class="fas fa-star color_grey"></i></b>'
+        } if (num == 3) {
+          num = '<b><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star color_grey"></i><i class="fas fa-star color_grey"></i></b>'
+        } if (num == 4) {
+          num = '<b><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star color_grey"></i></b>'
+        } if (num == 5) {
+          num = '<b><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></b>'
+        }
       item.innerHTML = '<div class="reviews_icon_user"><i class="fas fa-user-alt"></i></div><div class="review_content"><p class="review_name"><span class="text_size_xl">'
-        +user_name+'</span><b><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></b></p><p class="review_content-text text_size_m text_color_light_grey">'
+        +user_name+'</span>'+num+'</p><p class="review_content-text text_size_m text_color_light_grey">'
           +text+'</p></div><hr />'
 
       list.before(item);
+
+      document.getElementById('reviews').value = "";
 
         } else {
         return null;
       } 
     }
+  }
   </script>
   </body>
 </html>
