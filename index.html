@@ -23,7 +23,21 @@
         <a href="#" class="active"><img src="./assets/logo.png" alt="MagicFlix" /></a>
         <nav id="navLinks">
           <ul>
-            <li><a href="#">Magic videos<i class="fas fa-angle-down"></i></a></li>
+
+            <div class="p-mega-menu-trigger" onclick="mMenu()">
+            <li><a href="#">Magic videos<i class="fas fa-angle-down"></i>
+              <div class="p-mega-menu-content" id="vMenu">
+                <ul>
+                  <li class="item">Videos Magic Item</li>
+                  <li class="item">Videos Magic Item</li>
+                  <li class="item">Videos Magic Item</li>
+                  <li class="item">Videos Magic Item</li>
+                  <li class="item">Videos Magic Item</li>
+                </ul>
+              </div>
+            </a></li>
+            </div>
+            
             <li><a href="#">Magicians</a></li>
             <li><a href="#">My Account</a></li>
             <li><a href="#">About</a></li>
@@ -42,11 +56,26 @@
       <nav class="nav">
         <ul class="menu">
           <li class="menu__item">
+
+
+            <div class="p-mega-menu-trigger" onclick="nMenu()">
             <a
               class="menu__link link_color_active text_color_white text_size_l"
               href="#"
-              ><i class="fas fa-angle-down"></i>Magic videos</a
-            >
+              ><i class="fas fa-angle-down"></i>Magic videos
+              <div class="p-mega-menu-content" id="videosMenu">
+                <ul>
+                  <li class="item">Videos Magic Item</li>
+                  <li class="item">Videos Magic Item</li>
+                  <li class="item">Videos Magic Item</li>
+                  <li class="item">Videos Magic Item</li>
+                  <li class="item">Videos Magic Item</li>
+                </ul>
+              </div>
+              </a>
+            </div>
+
+
           </li>
           <li class="menu__item">
             <a
@@ -220,6 +249,23 @@
         x.style.display = "none";
       } else {
         x.style.display = "block";
+      }
+    }
+
+    nMenu = () => {
+      let y = document.getElementById('videosMenu');
+      if(y.style.display === "block") {
+        y.style.display = "none";
+      } else {
+        y.style.display = "block";
+      }
+    }
+    mMenu = () => {
+      let y = document.getElementById('vMenu');
+      if(y.style.display === "block") {
+        y.style.display = "none";
+      } else {
+        y.style.display = "block";
       }
     }
 
