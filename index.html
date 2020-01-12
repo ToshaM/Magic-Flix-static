@@ -386,7 +386,7 @@ rating.onclick = function(event) {
     
     reviews.addEventListener('keydown', function(event) {
       
-      if(event.code == 'Enter') {
+      if(event.code == 'Enter' | event.which == 13) {
 
       let text = document.getElementById('reviews').value;
       let list = document.getElementById('reviews');
