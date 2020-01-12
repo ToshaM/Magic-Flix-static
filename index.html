@@ -210,7 +210,7 @@
         </div>
         <input class="review_input text_leave-review" text="text" placeholder="Leave your review" id="reviews"/>
         <div class="aling_button_and_star text_size_xl">
-        <div class="far fa-star star_item active" data-rate="1"></div>
+        <div class="far fa-star star_item" data-rate="1"></div>
         <div class="far fa-star star_item" data-rate="2" ></div>
         <div class="far fa-star star_item" data-rate="3" ></div>
         <div class="far fa-star star_item" data-rate="4" ></div>
@@ -375,6 +375,51 @@ rating.onclick = function(event) {
       } 
     }
   }
+
+  ///// Для мобильной версии
+
+  rating.onclick = function(event) {
+      let num = event.target.dataset.rate;
+      if (num === undefined) {
+        num = 1;
+      }
+    
+    reviews.addEventListener('keydown', function(event) {
+      
+      if(event.code == 'Enter') {
+
+      let text = document.getElementById('reviews').value;
+      let list = document.getElementById('reviews');
+      let item = document.createElement('div');
+      let user_name = 'User User'
+      item.classList.add('container_review');
+      if (text !== "") {
+        if (num == 1) {
+          num = '<b><i class="fas fa-star"></i><i class="fas fa-star color_grey"></i><i class="fas fa-star color_grey"></i><i class="fas fa-star color_grey"></i><i class="fas fa-star color_grey"></i></b>'
+        } if (num == 2) {
+          num = '<b><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star color_grey"></i><i class="fas fa-star color_grey"></i><i class="fas fa-star color_grey"></i></b>'
+        } if (num == 3) {
+          num = '<b><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star color_grey"></i><i class="fas fa-star color_grey"></i></b>'
+        } if (num == 4) {
+          num = '<b><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star color_grey"></i></b>'
+        } if (num == 5) {
+          num = '<b><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></b>'
+        }
+      item.innerHTML = '<div class="reviews_icon_user"><i class="fas fa-user-alt"></i></div><div class="review_content"><p class="review_name"><span class="text_size_xl">'
+        +user_name+'</span>'+num+'</p><p class="review_content-text text_size_m text_color_light_grey">'
+          +text+'</p></div><hr />'
+
+      list.before(item);
+
+      document.getElementById('reviews').value = "";
+
+        } else {
+        return null;
+      } 
+    }
+  });
+}
+  
   </script>
   </body>
 </html>
